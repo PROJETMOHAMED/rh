@@ -150,8 +150,7 @@
                                     <td>{{ $item->full_name }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item->phone }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item->date_debut }}</td>
-                                    {{-- <td class="tx-right tx-medium tx-danger">{{ $item->ContratType->name }}</td> --}}
-                                    {{-- <td class="tx-right tx-medium tx-inverse">{{ $item->ContratType->name }}</td> --}}
+                                    <td class="tx-right tx-medium tx-inverse">{{ $item->ContratType?->name }}</td>
                                 </tr>
                             @empty
                                 <p>no data found</p>
@@ -184,8 +183,7 @@
                                     <td>{{ $item->full_name }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item->phone }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item->date_debut }}</td>
-                                    {{-- <td class="tx-right tx-medium tx-danger">{{ $item->ContratType->name }}</td> --}}
-                                    <td class="tx-right tx-medium tx-inverse">{{ $item->ContratType->name }}</td>
+                                    <td class="tx-right tx-medium tx-inverse">{{ $item->ContratType?->name }}</td>
                                 </tr>
                             @empty
                                 <p>no data found</p>
@@ -217,7 +215,7 @@
                                         <div class="d-flex align-items-center">
                                             <div class="mt-0">
                                                 <h5 class="mb-1 tx-15">{{ $item->full_name }}</h5>
-                                                <p class="mb-0 tx-13 text-success">{{ $item->ContratType->name }}</p>
+                                                <p class="mb-0 tx-13 text-success">{{ $item->ContratType?->name }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -277,7 +275,7 @@
                                         <div class="d-flex align-items-center">
                                             <div class="mt-0">
                                                 <h5 class="mb-1 tx-15">{{ $item->full_name }}</h5>
-                                                <p class="mb-0 tx-13 text-success">{{ $item->ContratType->name }}</p>
+                                                <p class="mb-0 tx-13 text-success">{{ $item->ContratType?->name }}</p>
                                             </div>
                                         </div>
                                     </div>

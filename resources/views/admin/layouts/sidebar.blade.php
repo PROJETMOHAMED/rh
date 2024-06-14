@@ -38,7 +38,7 @@
                         <path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3" />
                         <path
                             d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z" />
-                    </svg><span class="side-menu__label" style="font-weight: bold">Acceuil</span></a>
+                    </svg><span class="side-menu__label" style="font-weight: bold;color: black">Acceuil</span></a>
             </li>
 
             <li class="side-item side-item-category">General</li>
@@ -60,7 +60,7 @@
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="#"><i class="fa-solid fa-users"
                             style="color: #000000;"></i><span class="side-menu__label"
-                            style="margin-left: 14px;font-weight: bold">Employés</span><i class="angle fe fe-chevron-down"></i></a>
+                            style="margin-left: 14px;font-weight: bold;color: black">Employés</span><i class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
                         <li><a class="slide-item" href="{{ route('admin.employees.index', ['status' => 3]) }}">en Cours</a>
                         </li>
@@ -75,7 +75,7 @@
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="#"><i class="fa-solid fa-user-check"
                             style="color: #000000;"></i><span class="side-menu__label"
-                            style="margin-left: 14px;font-weight: bold">Présence</span><i class="angle fe fe-chevron-down"></i></a>
+                            style="margin-left: 14px;font-weight: bold;color: black">Présence</span><i class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
                         <li><a class="slide-item" href="{{ route('admin.att.ViewAttendance') }}">View Attendance</a></li>
                         <li><a class="slide-item" href="{{ route('admin.att.RetardAbence', ['status' => 2]) }}">Attendance
@@ -88,7 +88,7 @@
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="#"><i class="fa-solid fa-user-tie"
                         style="color: #000000;"></i><span class="side-menu__label"
-                        style="margin-left: 14px;font-weight: bold">Personnel</span><i class="angle fe fe-chevron-down"></i></a>
+                        style="margin-left: 14px;font-weight: bold;color: black">Personnel</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item"
                             href="{{ route('admin.employees.index', ['type' => 'stage']) }}">Stagiaire</a></li>
@@ -103,33 +103,33 @@
             <li class="slide">
                 <a class="side-menu__item" href="{{ route('admin.WorkTime') }}">
                         <i class="fa-solid fa-business-time" style="color: #000000;"></i>
-                        <span style="margin-left: 14px;font-weight: bold"
+                        <span style="margin-left: 14px;font-weight: bold;color: black"
                         class="side-menu__label">Schedules</span></a>
             </li>
             @can("view note")
                 <li class="slide">
                     <a class="side-menu__item" href="{{ route('admin.notes.index') }}"><i class="fa-solid fa-book"
-                            style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold"
+                            style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold;color: black"
                             class="side-menu__label">Notes</span></a>
                 </li>
             @endcan
             @can("view task")
                 <li class="slide">
                     <a class="side-menu__item" href="{{ route('admin.tasks.index') }}"><i class="fa-solid fa-list-check"
-                            style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold"
+                            style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold;color: black"
                             class="side-menu__label">tasks</span></a>
                 </li>
             @endcan
             @can("view user")
                 <li class="slide">
                     <a class="side-menu__item" href="{{ route('admin.users.index') }}"><i class="fa-solid fa-user-gear"
-                            style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold"
+                            style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold;color: black"
                             class="side-menu__label">users</span></a>
                 </li>
             @endcan
             <li class="slide">
                 <a class="side-menu__item" href="{{ route('admin.profile.index') }}"><i class="fa-solid fa-gears"
-                        style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold"
+                        style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold;color: black"
                         class="side-menu__label">Profie</span></a>
             </li>
         </ul>

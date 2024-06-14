@@ -82,21 +82,40 @@
                                                     @method('POST')
                                                     <div class="form-group">
                                                         <label>Email</label> <input class="form-control" name="email"
-                                                            placeholder="Enter your email" type="email" >
+                                                            placeholder="Enter your email" type="email">
                                                         @error('email')
                                                             <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Password</label> <input class="form-control"
-                                                            name="password" placeholder="Enter your password" 
-                                                            type="password">
+                                                        <label>Password</label>
+                                                        <div class="input-group">
+                                                            <input class="form-control" name="password" placeholder="Enter your password" type="password" id="passwordField">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                                                    <i class="fas fa-eye" id="togglePasswordIcon"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                         @error('password')
                                                             <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                         <br><br>
                                                         <button class="btn btn-main-primary btn-block">Sign In</button>
+                                                    </div>
                                                 </form>
+                                                <script>
+                                                    const togglePassword = document.querySelector('#togglePassword');
+                                                    const passwordField = document.querySelector('#passwordField');
+                                                    const togglePasswordIcon = document.querySelector('#togglePasswordIcon');
+                                                
+                                                    togglePassword.addEventListener('click', function () {
+                                                        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                                                        passwordField.setAttribute('type', type);
+                                                        togglePasswordIcon.classList.toggle('fa-eye-slash');
+                                                    });
+                                                </script>
+                                                
                                             </div>
                                         </div>
                                     </div>

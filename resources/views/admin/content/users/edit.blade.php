@@ -36,14 +36,33 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group mg-b-0">
-                                <label class="form-label">password:</label>
-                                <input class="form-control" name="password" placeholder="Enter user password" value=""
-                                    type="text" />
+                                <label class="form-label">Password: <span class="tx-danger">*</span></label>
+                                <div class="input-group">
+                                    <input class="form-control" name="password" placeholder="Enter user password" required
+                                        value="{{ old('password') }}" type="password" id="passwordField" />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                            <i class="fas fa-eye" id="toggleIcon"></i>
+                                        </button>
+                                    </div>
+                                </div>
                                 @error('password')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
+                        <script>
+                            const togglePassword = document.querySelector('#togglePassword');
+                            const passwordField = document.querySelector('#passwordField');
+                            const toggleIcon = document.querySelector('#toggleIcon');
+
+                            togglePassword.addEventListener('click', function(e) {
+                                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                                passwordField.setAttribute('type', type);
+                                toggleIcon.classList.toggle('fa-eye-slash');
+                            });
+                        </script>
+
                         <div class="col-6">
                             <div class="form-group mg-b-0">
                                 <label class="form-label">Role: <span class="tx-danger">*</span></label>
