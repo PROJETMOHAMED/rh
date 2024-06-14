@@ -270,13 +270,11 @@
                         @forelse ($listOfData['recentNotes'] as $item)
                             <div class="list-group-item list-group-item-action" href="#">
                                 <div class="media mt-0">
-                                    <img class="avatar-lg rounded-circle mr-3 my-auto" src="assets/img/faces/3.jpg"
-                                        alt="Image description">
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
                                             <div class="mt-0">
-                                                <h5 class="mb-1 tx-15">{{ $item->full_name }}</h5>
-                                                <p class="mb-0 tx-13 text-success">{{ optional($item->ContratType)->name }}</p>
+                                                <h5 class="mb-1 tx-15">{{ $item->date }}</h5>
+                                                <p class="mb-0 tx-13 text-success">{{ Str::limit($item->description, 25, '...') }}</p>
                                             </div>
                                         </div>
                                     </div>
