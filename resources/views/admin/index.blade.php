@@ -151,7 +151,7 @@
                                     <td class="tx-right tx-medium tx-inverse">{{ $item->phone }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item->date_debut }}</td>
                                     {{-- <td class="tx-right tx-medium tx-danger">{{ $item->ContratType->name }}</td> --}}
-                                    <td class="tx-right tx-medium tx-inverse">{{ $item->ContratType->name }}</td>
+                                    {{-- <td class="tx-right tx-medium tx-inverse">{{ $item->ContratType->name }}</td> --}}
                                 </tr>
                             @empty
                                 <p>no data found</p>
