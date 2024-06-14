@@ -286,7 +286,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 col-lg-6 col-xl-6">
+        <div class="col-md-12 col-lg-8 col-xl-8">
             <div class="card card-table-two">
                 <div class="d-flex justify-content-between">
                     <h4 class="card-title mb-1">Employees Status Of This Month</h4>
@@ -299,6 +299,7 @@
                             <tr>
                                 <th class="wd-lg-25p">Name</th>
                                 <th class="wd-lg-25p tx-right">Phone</th>
+                                <th class="wd-lg-25p tx-right">departement</th>
                                 <th class="wd-lg-25p tx-right">Late Count</th>
                                 <th class="wd-lg-25p tx-right">Absenc Count</th>
                                 <th class="wd-lg-25p tx-right"></th>
@@ -309,6 +310,7 @@
                                 <tr>
                                     <td>{{ $item['employee']->firstname }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item['employee']->phone }}</td>
+                                    <td class="tx-right tx-medium tx-inverse">{{ $item['employee']->departement->name }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item['late_count'] }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item['absence_count'] }}</td>
                                     <td class="">
@@ -325,10 +327,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 col-lg-6 col-xl-6">
+        <div class="col-md-12 col-lg-4 col-xl-4">
             <div class="main-calendar" id="calendar"></div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <!-- row close -->
 
     <!-- row -->

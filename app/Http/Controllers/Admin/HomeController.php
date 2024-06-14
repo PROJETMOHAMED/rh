@@ -20,9 +20,9 @@ class HomeController extends Controller
         // get stagiares Count
         $stageType = Type::where('name', 'stage')->whereNull('parent_id')->first();
         $typeIds = $stageType->children()->pluck('id')->push($stageType->id);
-        $StagiairesCount = Employee::whereIn('type_id', $typeIds)->where('status',3)->count();
+        $StagiairesCount = Employee::whereIn('type_id', $typeIds)->where('status', 3)->count();
         $counts = [
-            'employeeCount' => Employee::where('status',3)->count(),
+            'employeeCount' => Employee::where('status', 3)->count(),
             'AllemployeesCount' => Employee::count(),
             'stagiairesCount' => $StagiairesCount,
             'departmentCount' => Departement::count(),
@@ -32,7 +32,7 @@ class HomeController extends Controller
         // Get Stagiare List Data
         $stageType = Type::where('name', 'stage')->whereNull('parent_id')->first();
         $typeIds = $stageType->children()->pluck('id')->push($stageType->id);
-        $stagiaires = Employee::whereIn('type_id', $typeIds)->where('status',3)->with('ContratType')->get();
+        $stagiaires = Employee::whereIn('type_id', $typeIds)->where('status', 3)->with('ContratType')->get();
 
         //Get Employees List
         $stageType = Type::where('name', 'Employment Contract')->whereNull('parent_id')->first();
@@ -43,7 +43,7 @@ class HomeController extends Controller
         $startOfMonth = Carbon::now()->startOfMonth();
         $endOfMonth = Carbon::now()->endOfMonth();
 
-        $employeesCountLateAbsence = Employee::with(['Attendance' => function ($query) use ($startOfMonth, $endOfMonth) {
+        $employeesCountLateAbsence = Employee::where('status', 3)->with(['departement', 'Attendance' => function ($query) use ($startOfMonth, $endOfMonth) {
             $query->whereBetween('date', [$startOfMonth, $endOfMonth]);
         }])
             ->get()
