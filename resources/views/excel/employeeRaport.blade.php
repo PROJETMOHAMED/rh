@@ -1,0 +1,1 @@
+<h1 style="text-align:left">{{ $employee['firstname'] }} {{ $employee['last_name'] }} : start at {{ $employee['date_debut'] }} => {{ $employee['date_fin'] }} au Departement {{ $employee['departement']['name'] }} </h1>
