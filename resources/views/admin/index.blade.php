@@ -222,6 +222,7 @@
                                 </div>
                             </div>
                         @empty
+                        {{--  --}}
                         @endforelse
                     </div>
                 </div>
