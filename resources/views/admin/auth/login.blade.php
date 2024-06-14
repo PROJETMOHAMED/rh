@@ -57,11 +57,11 @@
         <div class="container-fluid">
             <div class="row no-gutter">
                 <!-- The image half -->
-                <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
+                <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary">
                     <div class="row wd-100p mx-auto text-center">
                         <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-                            <img src="{{ asset('assets/img/media/login.png') }} "
-                                class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
+                            <img src="{{ asset('assets/img/gestion-personnel_gif.gif') }} " class=""
+                                alt="logo">
                         </div>
                     </div>
                 </div>
@@ -81,18 +81,26 @@
                                                     @csrf
                                                     @method('POST')
                                                     <div class="form-group">
-                                                        <label>Email</label> <input class="form-control" name="email"
-                                                            placeholder="Enter your email" type="email">
+                                                        <label style="color: black">Email</label> <input
+                                                            class="form-control"
+                                                            style="border: 1px solid black ; border-bottom-right-radius: 20px;border-top-right-radius: 20px"
+                                                            name="email" placeholder="Enter your email"
+                                                            type="email">
                                                         @error('email')
                                                             <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Password</label>
+                                                        <labe style="color: black">Password</labe>
                                                         <div class="input-group">
-                                                            <input class="form-control" name="password" placeholder="Enter your password" type="password" id="passwordField">
+                                                            <input style="border: 1px solid black " class="form-control"
+                                                                name="password" placeholder="Enter your password"
+                                                                type="password" id="passwordField">
                                                             <div class="input-group-append">
-                                                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                                                <button
+                                                                    style="border: 1px solid black ; border-bottom-right-radius: 20px;border-top-right-radius: 20px"
+                                                                    class="btn btn-outline-secondary" type="button"
+                                                                    id="togglePassword">
                                                                     <i class="fas fa-eye" id="togglePasswordIcon"></i>
                                                                 </button>
                                                             </div>
@@ -108,14 +116,14 @@
                                                     const togglePassword = document.querySelector('#togglePassword');
                                                     const passwordField = document.querySelector('#passwordField');
                                                     const togglePasswordIcon = document.querySelector('#togglePasswordIcon');
-                                                
-                                                    togglePassword.addEventListener('click', function () {
+
+                                                    togglePassword.addEventListener('click', function() {
                                                         const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
                                                         passwordField.setAttribute('type', type);
                                                         togglePasswordIcon.classList.toggle('fa-eye-slash');
                                                     });
                                                 </script>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
