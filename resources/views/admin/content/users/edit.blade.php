@@ -38,7 +38,7 @@
                             <div class="form-group mg-b-0">
                                 <label class="form-label">Password: <span class="tx-danger">*</span></label>
                                 <div class="input-group">
-                                    <input class="form-control" name="password" placeholder="Enter user password" required
+                                    <input class="form-control" name="password" placeholder="Enter user password" 
                                         value="" type="password" id="passwordField" />
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" type="button" id="togglePassword">
