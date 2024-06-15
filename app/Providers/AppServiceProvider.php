@@ -8,6 +8,7 @@ use App\Models\Note;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 
@@ -36,17 +37,18 @@ class AppServiceProvider extends ServiceProvider
         });
         View::composer('admin.components.EmployeesNearEnd', function ($view) {
 
-            // Get today's date
             $today = Carbon::today();
-
-            // Calculate the date exactly 5 days from today
             $fiveDaysFromNow = $today->copy()->addDays(5);
 
-            // Query to get employees where date_fin is exactly 5 days from today
-            $data = Employee::whereDate('date_fin', $fiveDaysFromNow)->get();
+            $user = Auth::user();
 
-            // Pass the data to the view
-                $view->with('data', $data);
+            $departmentIds = $user->departements->pluck('id');
+
+            $data = Employee::whereDate('date_fin', $fiveDaysFromNow)
+                ->whereIn('departement_id', $departmentIds)
+                ->get();
+
+            $view->with('data', $data);
 
         });
         Validator::extend('time_range', function ($attribute, $value, $parameters, $validator) {

@@ -39,7 +39,7 @@
                                 <label class="form-label">Password: <span class="tx-danger">*</span></label>
                                 <div class="input-group">
                                     <input class="form-control" name="password" placeholder="Enter user password" required
-                                        value="{{ old('password') }}" type="password" id="passwordField" />
+                                        value="" type="password" id="passwordField" />
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                             <i class="fas fa-eye" id="toggleIcon"></i>

@@ -21,7 +21,7 @@
             </div>
             <div class="main-message-list chat-scroll">
                 @foreach ($data as $item)
-                    <a href="#" class="p-3 d-flex border-bottom">
+                    <a href="{{ route('admin.employees.show', $item) }}" class="p-3 d-flex border-bottom">
                         <div class="wd-90p">
                             <div class="d-flex">
                                 <h5 class="mb-1 name">{{ $item->full_name }}</h5>
