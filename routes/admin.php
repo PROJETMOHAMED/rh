@@ -31,7 +31,9 @@ Route::prefix('admin')->middleware('auth')->name("admin.")->group(function () {
         Route::get("/DeletePermissionFromUser/{user}", "DeletePermissionFromUser")->name("DeletePermissionFromUser");
         Route::get('/remove-department/{user}/{department}', 'removeDepartment')->name('removeDepartmentFromUser');
         Route::get("/WorkTime", "WorkTime")->name("WorkTime");
-        Route::put("/EditeWorkTime{week}", "EditeWorkTime")->name("EditeWorkTime");
+        Route::put("/EditeWorkTime/{week}", "EditeWorkTime")->name("EditeWorkTime");
+        Route::put("/EditReason/{attendance}", "EditReason")->name("EditReason");
+        Route::put("/AddJustification/{attendance}", "AddJustification")->name("AddJustification");
     });
     //
     Route::resource("departement", DepartementController::class)->except("index");

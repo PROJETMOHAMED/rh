@@ -3,18 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Departement;
 use App\Models\Employee;
+use App\Models\File;
 use App\Models\Note;
 use App\Models\Schedule;
 use App\Models\Task;
 use App\Models\Type;
 use App\Models\User;
+use App\Services\FilesServices;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    protected $filesServices;
+
+    public function __construct(FilesServices $filesServices)
+    {
+        $this->filesServices = $filesServices;
+    }
+
     public function index()
     {
         // get stagiares Count
@@ -43,9 +53,12 @@ class HomeController extends Controller
         $startOfMonth = Carbon::now()->startOfMonth();
         $endOfMonth = Carbon::now()->endOfMonth();
 
-        $employeesCountLateAbsence = Employee::where('status', 3)->with(['departement', 'Attendance' => function ($query) use ($startOfMonth, $endOfMonth) {
-            $query->whereBetween('date', [$startOfMonth, $endOfMonth]);
-        }])
+        $employeesCountLateAbsence = Employee::where('status', 3)->with([
+            'departement',
+            'Attendance' => function ($query) use ($startOfMonth, $endOfMonth) {
+                $query->whereBetween('date', [$startOfMonth, $endOfMonth]);
+            }
+        ])
             ->get()
             ->map(function ($employee) {
                 $lateCount = $employee->Attendance->where('status', 2)->count();
@@ -109,6 +122,33 @@ class HomeController extends Controller
         $week->update($request->all());
         return redirect()->back()->with([
             'success' => 'Work Time Updated Successfully'
+        ]);
+    }
+    public function EditReason(Attendance $attendance, Request $request)
+    {
+        $this->validate($request, [
+            "reason" => "required"
+        ]);
+        $attendance->reason = $request->reason;
+        $attendance->update();
+        return redirect()->back()->with([
+            "success" => "reason edit with success"
+        ]);
+    }
+    public function AddJustification(Attendance $attendance, Request $request)
+    {
+        $this->validate($request, [
+            "file" => "required"
+        ]);
+        if ($request->hasFile("file")) {
+            $image = $this->filesServices->uploadFile($request->file, "AttendanceReason");
+
+            $new_file = new File(["url" => $image]);
+
+            $attendance->Files()->save($new_file);
+        }
+        return redirect()->back()->with([
+            "success" => "reason edit with success"
         ]);
     }
 }

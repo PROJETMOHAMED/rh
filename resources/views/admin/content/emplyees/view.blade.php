@@ -109,7 +109,14 @@
                                                 <tr>
                                                     <th scope="row">{{ $item->id }}</th>
                                                     <td>{{ $item->date }}</td>
-                                                    <td>{{ $item->reason }}</td>
+                                                    <td>
+                                                        <form action="{{ route('admin.EditReason', $item) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="text" value="{{ $item->reason }}" name="reason">
+                                                        </form>
+                                                        {{-- {{ $item->reason }} --}}
+                                                    </td>
                                                     <td>
                                                         @if ($item->Files)
                                                             <a href=" {{ asset('files/AttendanceReason/' . $item->Files->url) }}"
@@ -117,16 +124,76 @@
                                                                 click me
                                                             </a>
                                                         @else
-                                                            No Justis found
+                                                            <form action="{{ route('admin.AddJustification', $item) }}"
+                                                                enctype="multipart/form-data"
+                                                                id="justification-form-{{ $item->id }}" method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="file" name="file" class="file-input" data-item-id="{{ $item->id }}" accept="application/pdf">
+
+                                                            </form>
+                                                            <script>
+                                                                document.addEventListener('DOMContentLoaded', function() {
+                                                                    var fileInputs = document.querySelectorAll('.file-input');
+
+                                                                    fileInputs.forEach(function(fileInput) {
+                                                                        fileInput.addEventListener('change', function() {
+                                                                            var itemId = fileInput.getAttribute('data-item-id');
+                                                                            var form = document.getElementById('justification-form-' + itemId);
+
+                                                                            // Check if a file is selected
+                                                                            if (fileInput.files.length > 0) {
+                                                                                // Submit the corresponding form
+                                                                                form.submit();
+                                                                            }
+                                                                        });
+                                                                    });
+                                                                });
+                                                            </script>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if ($item->status == 1)
-                                                            <span class="badge bg-danger" title="absence"><i
-                                                                    class="fa-solid fa-x"></i></span>
+                                                            {{-- <span class="badge bg-danger" title="absence"><i
+                                                                    class="fa-solid fa-x"></i></span> --}}
+                                                            <div class="btn-group dropdown">
+                                                                <button type="button" class="badge bg-danger"
+                                                                    style="border: none" id="dropdownMenuDate"
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                    <i class="fa-solid fa-x" title="{{ $item->reason }}"></i>
+                                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-right"
+                                                                    aria-labelledby="dropdownMenuDate"
+                                                                    data-x-placement="bottom-end">
+                                                                    <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 2]) }}"
+                                                                        class="dropdown-item">retard</a>
+                                                                    <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 0]) }}"
+                                                                        class="dropdown-item">preson</a>
+                                                                </div>
+                                                            </div>
                                                         @else
-                                                            <span class="badge bg-warning" title="retard"><i
-                                                                    class="fa-solid fa-minus"></i></span>
+                                                            {{-- <span class="badge bg-warning" title="retard"><i
+                                                                    class="fa-solid fa-minus"></i></span> --}}
+                                                            <div class="btn-group dropdown">
+                                                                <button type="button" class="badge bg-info"
+                                                                    style="border: none" id="dropdownMenuDate"
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                    <i title="{{ $item->reason }}"
+                                                                        class="fa-solid fa-minus"></i>
+                                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-right"
+                                                                    aria-labelledby="dropdownMenuDate"
+                                                                    data-x-placement="bottom-end">
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 1]) }}">absent</a>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 0]) }}">preson</a>
+                                                                </div>
+                                                            </div>
                                                         @endif
                                                     </td>
                                                 </tr>
