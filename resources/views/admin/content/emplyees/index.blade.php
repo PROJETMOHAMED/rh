@@ -143,15 +143,32 @@
                                             </div>
                                             @can('delete employee')
                                                 @if ($item->Attendance->count() == 0)
-                                                    <form action="{{ route('admin.employees.destroy', $item) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button
-                                                            onclick="return confirm('Are you sure you want to delete this item?');"
-                                                            class="btn btn-danger btn-sm"><i
-                                                                class="fa-solid fa-trash"></i></button>
-                                                    </form>
+                                                <form id="delete-employee-form-{{ $item->id }}" action="{{ route('admin.employees.destroy', $item) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    @method('delete')
+                                                </form>
+                                                <button
+                                                    onclick="confirmEmployeeDelete({{ $item->id }});"
+                                                    class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+                                                <script>
+                                                    function confirmEmployeeDelete(itemId) {
+                                                        Swal.fire({
+                                                            title: "Are you sure?",
+                                                            text: "You won't be able to revert this!",
+                                                            icon: "warning",
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: "#3085d6",
+                                                            cancelButtonColor: "#d33",
+                                                            confirmButtonText: "Yes, delete it!"
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById('delete-employee-form-' + itemId).submit();
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+
                                                 @endif
                                             @endcan
                                         </td>

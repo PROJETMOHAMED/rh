@@ -45,7 +45,7 @@
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="#"><i class="fa-solid fa-building"
                         style="color: #000000;"></i><span class="side-menu__label"
-                        style="margin-left: 14px;font-weight: bold">Département</span><i class="angle fe fe-chevron-down"></i></a>
+                        style="margin-left: 14px;font-weight: bold;color:black">Département</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     @foreach ($departementlist as $item)
                         @if (Auth::user()->departements->contains('id', $item->id))

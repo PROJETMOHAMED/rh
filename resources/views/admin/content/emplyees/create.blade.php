@@ -72,68 +72,75 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="form-group mg-b-0">
-                                <label class="form-label">Date Debut: <span class="tx-danger">*</span></label>
-                                <input class="form-control" name="date_debut" id="date_debut" placeholder="Enter Date Debut"
-                                    required type="date" value="{{ old('date_debut', now()->format('Y-m-d')) }}" />
-                                @error('date_debut')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group mg-b-0">
-                                <label class="form-label">Date Fin: </label>
-                                <input class="form-control" name="date_fin" id="date_fin" type="date"
-                                    value="{{ old('date_fin') }}" />
-                                @error('date_fin')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                                <span id="date_difference" class="tx-info"></span>
-                            </div>
-                        </div>
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function() {
-                                const dateDebutInput = document.getElementById('date_debut');
-                                const dateFinInput = document.getElementById('date_fin');
-                                const dateDifferenceSpan = document.getElementById('date_difference');
+    <div class="form-group mg-b-0">
+        <label class="form-label">Date Debut: <span class="tx-danger">*</span></label>
+        <input class="form-control" name="date_debut" id="date_debut" placeholder="Enter Date Debut"
+            required type="date" value="{{ old('date_debut', now()->format('Y-m-d')) }}" />
+        @error('date_debut')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <span id="date_debut_minus_five" class="tx-info"></span>
+    </div>
+</div>
+<div class="col-6">
+    <div class="form-group mg-b-0">
+        <label class="form-label">Date Fin: </label>
+        <input class="form-control" name="date_fin" id="date_fin" type="date"
+            value="{{ old('date_fin') }}" />
+        @error('date_fin')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <span id="date_difference" class="tx-info"></span>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateDebutInput = document.getElementById('date_debut');
+        const dateFinInput = document.getElementById('date_fin');
+        const dateDifferenceSpan = document.getElementById('date_difference');
+        const dateDebutMinusFiveSpan = document.getElementById('date_debut_minus_five');
 
-                                dateDebutInput.addEventListener('change', calculateDateDifference);
-                                dateFinInput.addEventListener('change', calculateDateDifference);
+        dateDebutInput.addEventListener('change', calculateDateDifference);
+        dateFinInput.addEventListener('change', calculateDateDifference);
 
-                                function calculateDateDifference() {
-                                    const dateDebut = new Date(dateDebutInput.value);
-                                    const dateFin = new Date(dateFinInput.value);
+        function calculateDateDifference() {
+            const dateDebut = new Date(dateDebutInput.value);
+            const dateFin = new Date(dateFinInput.value);
 
-                                    if (dateDebutInput.value && dateFinInput.value && dateFin > dateDebut) {
-                                        const difference = getDateDifference(dateDebut, dateFin);
-                                        dateDifferenceSpan.textContent = difference;
-                                    } else {
-                                        dateDifferenceSpan.textContent = '';
-                                    }
-                                }
+            if (dateDebutInput.value && dateFinInput.value && dateFin > dateDebut) {
+                const difference = getDateDifference(dateDebut, dateFin);
+                dateDifferenceSpan.textContent = difference;
+                const dateFinMinusFive = new Date(dateFin);
+                dateFinMinusFive.setDate(dateFinMinusFive.getDate() - 5);
+                dateDebutMinusFiveSpan.textContent = dateFinMinusFive.toISOString().split('T')[0];
+            } else {
+                dateDifferenceSpan.textContent = '';
+                dateDebutMinusFiveSpan.textContent = '';
+            }
+        }
 
-                                function getDateDifference(date1, date2) {
-                                    const diffTime = Math.abs(date2 - date1);
-                                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                                    const years = Math.floor(diffDays / 365);
-                                    const months = Math.floor((diffDays % 365) / 30);
-                                    const days = diffDays % 30;
+        function getDateDifference(date1, date2) {
+            const diffTime = Math.abs(date2 - date1);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const years = Math.floor(diffDays / 365);
+            const months = Math.floor((diffDays % 365) / 30);
+            const days = diffDays % 30;
 
-                                    let difference = '';
-                                    if (years > 0) {
-                                        difference += years + (years === 1 ? ' year ' : ' years ');
-                                    }
-                                    if (months > 0) {
-                                        difference += months + (months === 1 ? ' month ' : ' months ');
-                                    }
-                                    if (days > 0) {
-                                        difference += days + (days === 1 ? ' day' : ' days');
-                                    }
-                                    return difference.trim();
-                                }
-                            });
-                        </script>
+            let difference = '';
+            if (years > 0) {
+                difference += years + (years === 1 ? ' année ' : ' année ');
+            }
+            if (months > 0) {
+                difference += months + (months === 1 ? ' mois ' : ' mois ');
+            }
+            if (days > 0) {
+                difference += days + (days === 1 ? ' jour' : ' jours');
+            }
+            return difference.trim();
+        }
+    });
+</script>
+
                         <div class="col-6">
                             <div class="form-group mg-b-0">
                                 <label class="form-label">Piece D'entité (CNIE - Passport - Carte Siege ...): <span

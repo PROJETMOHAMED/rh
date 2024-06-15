@@ -139,14 +139,33 @@
                                             </div>
                                             {{--  --}}
                                             @can("delete task")
-                                                
-                                                <form action="{{ route('admin.tasks.destroy', $item) }}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button
-                                                        onclick="return confirm('Are you sure you want to delete this item?');"
-                                                        class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                                                </form>
+
+                                            <form id="delete-form-{{ $item->id }}" action="{{ route('admin.tasks.destroy', $item) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('delete')
+                                            </form>
+                                            <button
+                                                onclick="confirmDelete({{ $item->id }});"
+                                                class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+                                            <script>
+                                                function confirmDelete(itemId) {
+                                                    Swal.fire({
+                                                        title: "Are you sure?",
+                                                        text: "You won't be able to revert this!",
+                                                        icon: "warning",
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: "#3085d6",
+                                                        cancelButtonColor: "#d33",
+                                                        confirmButtonText: "Yes, delete it!"
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            document.getElementById('delete-form-' + itemId).submit();
+                                                        }
+                                                    });
+                                                }
+                                            </script>
+
                                             @endcan
                                         </td>
                                     </tr>

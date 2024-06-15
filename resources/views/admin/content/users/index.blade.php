@@ -56,7 +56,7 @@
                                         <td>
                                             @foreach ($item->permissions as $per)
                                                 <a @can('delete user')
-                                                    
+
                                                 href="{{ route('admin.DeletePermissionFromUser', ['user' => $item, 'permission' => $per->name]) }}"
 
                                                     onclick="return confirm('Are you sure you would like to delete this permission from the user?');"
@@ -83,13 +83,32 @@
                                             @endcan
 
                                             @can('delete user')
-                                                <form action="{{ route('admin.users.destroy', $item) }}" method="POST">
+                                                <form id="delete-user-form-{{ $item->id }}"
+                                                    action="{{ route('admin.users.destroy', $item) }}" method="POST"
+                                                    style="display: none;">
                                                     @csrf
                                                     @method('delete')
-                                                    <button
-                                                        onclick="return confirm('Are you sure you want to delete this item?');"
-                                                        class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                                                 </form>
+                                                <button onclick="confirmUserDelete({{ $item->id }});"
+                                                    class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+                                                <script>
+                                                    function confirmUserDelete(itemId) {
+                                                        Swal.fire({
+                                                            title: "Are you sure?",
+                                                            text: "You won't be able to revert this!",
+                                                            icon: "warning",
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: "#3085d6",
+                                                            cancelButtonColor: "#d33",
+                                                            confirmButtonText: "Yes, delete it!"
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById('delete-user-form-' + itemId).submit();
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
                                             @endcan
                                         </td>
                                     </tr>

@@ -11,7 +11,7 @@
                     Index</span>
             </div>
         </div>
-        @can("create note")
+        @can('create note')
             <div class="d-flex my-xl-auto right-content">
                 <div class="pr-1 mb-3 mb-xl-0">
                     <a href="{{ route('admin.notes.create') }}" title="Add New Bloc Note" type="button"
@@ -94,23 +94,46 @@
                                         <td>{{ $item->date }}</td>
                                         <td>{{ $item->description }}</td>
                                         <td class="d-flex">
-                                            @can("edit note")
-                                                
+                                            @can('edit note')
                                                 <a href="{{ route('admin.notes.edit', $item) }}" class="btn btn-warning btn-sm"
                                                     style="margin-right: 5px"><i class="fa-solid fa-pen "></i></a>
                                             @endcan
-{{--                                             
+                                            {{--
                                             <a href="{{ route('admin.notes.show', $item) }}" style="margin-right: 5px"
                                                 class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a> --}}
                                             {{--  --}}
-                                            @can("delete note")
-                                                <form action="{{ route('admin.notes.destroy', $item) }}" method="POST">
+                                            @can('delete note')
+                                                <form id="delete-form-{{ $item->id }}"
+                                                    action="{{ route('admin.notes.destroy', $item) }}" method="POST"
+                                                    style="display: none;">
                                                     @csrf
                                                     @method('delete')
-                                                    <button
-                                                        onclick="return confirm('Are you sure you want to delete this block?');"
-                                                        class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                                                 </form>
+                                                <button onclick="confirmDelete({{ $item->id }});"
+                                                    class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+
+                                                <script>
+                                                    function confirmDelete(itemId) {
+                                                        Swal.fire({
+                                                            title: "Are you sure?",
+                                                            text: "You won't be able to revert this!",
+                                                            icon: "warning",
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: "#3085d6",
+                                                            cancelButtonColor: "#d33",
+                                                            confirmButtonText: "Yes, delete it!"
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById('delete-form-' + itemId).submit();
+                                                                Swal.fire({
+                                                                    title: "Deleted!",
+                                                                    text: "Your file has been deleted.",
+                                                                    icon: "success"
+                                                                });
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
                                             @endcan
                                         </td>
                                     </tr>

@@ -87,6 +87,7 @@
                     </div>
                     <div class="main-header-right">
                         @include('admin.components.BlocNotesNotification')
+                        @include('admin.components.EmployeesNearEnd')
                         <div class="nav-item full-screen fullscreen-button">
                             <a class="new nav-link full-screen-link" href="#"><svg
                                     xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24"
@@ -207,6 +208,7 @@
     <!--Internal  Perfect-scrollbar js -->
     {{-- <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/perfect-scrollbar/p-scroll.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Eva-icons js -->
     <script src="{{ asset('assets/js/eva-icons.min.js') }}"></script>
