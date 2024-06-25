@@ -75,55 +75,27 @@
                                     <div class="card-sigin">
                                         <div class="card-sigin">
                                             <div class="main-signup-header">
-                                                <h2>Welcome back!</h2>
-                                                <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
-                                                <form action="{{ route('login.fun') }}" method="POST">
+                                                <h2>FORGOT PASSWORD?</h2>
+                                                <h5 class="font-weight-semibold mb-4">PASSWORD RESET.</h5>
+                                                <p class="semibold mb-4">Enter your email below and we will
+                                                    send you a link to reset your password.</p>
+                                                <form action="{{ route('forget.password.post') }}" method="POST">
                                                     @csrf
                                                     @method('POST')
                                                     <div class="form-group">
                                                         <label style="color: black">Email</label> <input
-                                                            class="form-control" value="{{old('email')}}"
+                                                            class="form-control"
                                                             style="border: 1px solid black ; border-bottom-right-radius: 20px;border-top-right-radius: 20px"
                                                             name="email" placeholder="Enter your email"
                                                             type="email">
                                                         @error('email')
                                                             <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <labe style="color: black">Password</labe>
-                                                        <div class="input-group">
-                                                            <input style="border: 1px solid black " class="form-control"
-                                                                name="password" placeholder="Enter your password"
-                                                                type="password" id="passwordField">
-                                                            <div class="input-group-append">
-                                                                <button
-                                                                    style="border: 1px solid black ; border-bottom-right-radius: 20px;border-top-right-radius: 20px"
-                                                                    class="btn btn-outline-secondary" type="button"
-                                                                    id="togglePassword">
-                                                                    <i class="fas fa-eye" id="togglePasswordIcon"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        @error('password')
-                                                            <div class="alert alert-danger">{{ $message }}</div>
-                                                        @enderror
                                                         <br><br>
-                                                        <button class="btn btn-main-primary btn-block">Sign In</button>
+                                                        <button class="btn btn-main-primary btn-block">Send
+                                                            link</button>
                                                     </div>
                                                 </form>
-                                                <a href="{{route('forget.password.get')}}">forget password</a>
-                                                <script>
-                                                    const togglePassword = document.querySelector('#togglePassword');
-                                                    const passwordField = document.querySelector('#passwordField');
-                                                    const togglePasswordIcon = document.querySelector('#togglePasswordIcon');
-
-                                                    togglePassword.addEventListener('click', function() {
-                                                        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                                                        passwordField.setAttribute('type', type);
-                                                        togglePasswordIcon.classList.toggle('fa-eye-slash');
-                                                    });
-                                                </script>
 
                                             </div>
                                         </div>

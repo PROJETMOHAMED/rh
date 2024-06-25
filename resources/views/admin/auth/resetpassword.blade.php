@@ -75,14 +75,14 @@
                                     <div class="card-sigin">
                                         <div class="card-sigin">
                                             <div class="main-signup-header">
-                                                <h2>Welcome back!</h2>
-                                                <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
-                                                <form action="{{ route('login.fun') }}" method="POST">
+                                                <h2>Reset Password!</h2>
+                                                <form action="{{ route('reset.password.post') }}" method="POST">
                                                     @csrf
                                                     @method('POST')
+                                                    <input type="hidden" name="token" value="{{ $token }}">
                                                     <div class="form-group">
                                                         <label style="color: black">Email</label> <input
-                                                            class="form-control" value="{{old('email')}}"
+                                                            class="form-control" value="{{ old('email') }}"
                                                             style="border: 1px solid black ; border-bottom-right-radius: 20px;border-top-right-radius: 20px"
                                                             name="email" placeholder="Enter your email"
                                                             type="email">
@@ -91,16 +91,16 @@
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <labe style="color: black">Password</labe>
+                                                        <label style="color: black">Password</label>
                                                         <div class="input-group">
-                                                            <input style="border: 1px solid black " class="form-control"
+                                                            <input style="border: 1px solid black" class="form-control"
                                                                 name="password" placeholder="Enter your password"
                                                                 type="password" id="passwordField">
                                                             <div class="input-group-append">
                                                                 <button
-                                                                    style="border: 1px solid black ; border-bottom-right-radius: 20px;border-top-right-radius: 20px"
+                                                                    style="border: 1px solid black; border-bottom-right-radius: 20px; border-top-right-radius: 20px"
                                                                     class="btn btn-outline-secondary" type="button"
-                                                                    id="togglePassword">
+                                                                    onclick="togglePasswordVisibility('passwordField', 'togglePasswordIcon')">
                                                                     <i class="fas fa-eye" id="togglePasswordIcon"></i>
                                                                 </button>
                                                             </div>
@@ -108,22 +108,52 @@
                                                         @error('password')
                                                             <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label style="color: black">Password confirmation</label>
+                                                        <div class="input-group">
+                                                            <input style="border: 1px solid black" class="form-control"
+                                                                name="password_confirmation"
+                                                                placeholder="Enter your password" type="password"
+                                                                id="passwordConfirmationField">
+                                                            <div class="input-group-append">
+                                                                <button
+                                                                    style="border: 1px solid black; border-bottom-right-radius: 20px; border-top-right-radius: 20px"
+                                                                    class="btn btn-outline-secondary" type="button"
+                                                                    onclick="togglePasswordVisibility('passwordConfirmationField', 'togglePasswordIconConfirmation')">
+                                                                    <i class="fas fa-eye"
+                                                                        id="togglePasswordIconConfirmation"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        @error('password_confirmation')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                         <br><br>
                                                         <button class="btn btn-main-primary btn-block">Sign In</button>
                                                     </div>
-                                                </form>
-                                                <a href="{{route('forget.password.get')}}">forget password</a>
-                                                <script>
-                                                    const togglePassword = document.querySelector('#togglePassword');
-                                                    const passwordField = document.querySelector('#passwordField');
-                                                    const togglePasswordIcon = document.querySelector('#togglePasswordIcon');
+                                                    <script>
+                                                        function togglePasswordVisibility(passwordFieldId, toggleIconId) {
+                                                            var passwordField = document.getElementById(passwordFieldId);
+                                                            var toggleIcon = document.getElementById(toggleIconId);
 
-                                                    togglePassword.addEventListener('click', function() {
-                                                        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                                                        passwordField.setAttribute('type', type);
-                                                        togglePasswordIcon.classList.toggle('fa-eye-slash');
-                                                    });
-                                                </script>
+                                                            if (passwordField.type === "password") {
+                                                                passwordField.type = "text";
+                                                                toggleIcon.classList.remove("fa-eye");
+                                                                toggleIcon.classList.add("fa-eye-slash");
+                                                            } else {
+                                                                passwordField.type = "password";
+                                                                toggleIcon.classList.remove("fa-eye-slash");
+                                                                toggleIcon.classList.add("fa-eye");
+                                                            }
+                                                        }
+                                                    </script>
+
+                                                </form>
+
 
                                             </div>
                                         </div>
