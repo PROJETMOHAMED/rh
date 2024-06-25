@@ -74,6 +74,12 @@
                                 <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                     <div class="card-sigin">
                                         <div class="card-sigin">
+                                            @if (session('message'))
+                                                <div class="alert alert-success">
+                                                    {{ session('message') }}
+                                                </div>
+                                            @endif
+
                                             <div class="main-signup-header">
                                                 <h2>FORGOT PASSWORD?</h2>
                                                 <h5 class="font-weight-semibold mb-4">PASSWORD RESET.</h5>
