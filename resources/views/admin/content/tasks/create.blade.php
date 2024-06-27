@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="main-content-label mg-b-5">
-                    Create A New Tqsk
+                    Create A New Task
                 </div>
                 <form action="{{ route('admin.tasks.store') }}" method="POST">
                     @csrf
