@@ -54,9 +54,10 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ])->assignRole($role);
-
-        foreach ($request->permission as $item) {
-            $user->givePermissionTo($item);
+        if ($request->permissions) {
+            foreach ($request->permission as $item) {
+                $user->givePermissionTo($item);
+            }
         }
 
         if ($request->has('departements')) {
