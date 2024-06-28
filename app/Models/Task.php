@@ -18,6 +18,7 @@ class Task extends Model
         'date_debut',
         'date_fin',
         'status',
+        'details',
         'link',
     ];
 

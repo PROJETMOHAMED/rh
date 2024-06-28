@@ -92,16 +92,16 @@
                                     <tr>
                                         <th scope="row">{{ $item->id }}</th>
                                         <td>{{ $item->date }}</td>
-                                        <td>{{ $item->description }}</td>
+                                        <td>@limitHtml($item->description)</td>
                                         <td class="d-flex">
                                             @can('edit note')
                                                 <a href="{{ route('admin.notes.edit', $item) }}" class="btn btn-warning btn-sm"
                                                     style="margin-right: 5px"><i class="fa-solid fa-pen "></i></a>
                                             @endcan
-                                            {{--
+
                                             <a href="{{ route('admin.notes.show', $item) }}" style="margin-right: 5px"
-                                                class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a> --}}
-                                            {{--  --}}
+                                                class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a> 
+
                                             @can('delete note')
                                                 <form id="delete-form-{{ $item->id }}"
                                                     action="{{ route('admin.notes.destroy', $item) }}" method="POST"

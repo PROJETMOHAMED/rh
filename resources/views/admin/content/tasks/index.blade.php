@@ -92,6 +92,7 @@
                                     <th>date fin</th>
                                     <th>avancement</th>
                                     <th>Link</th>
+                                    <th>Details</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,13 +112,22 @@
                                                 <span class="badge bg-success text-white">completed</span>
                                             @endif
                                         </td>
-                                        <td><a href="{{ $item->link }}" target="__blank"
-                                                class="btn btn-success btn-sm">click me</a></td>
+                                        <td>
+                                            @if ($item->link)
+                                                <a href="{{ $item->link }}" target="__blank"
+                                                    class="btn btn-success btn-sm">click me</a>
+                                            @else
+                                                no link found
+                                            @endif
+                                        </td>
+                                        <td>@limitHtml($item->details)</td>
                                         <td class="d-flex">
-                                            @can("edit task")
+                                            @can('edit task')
                                                 <a href="{{ route('admin.tasks.edit', $item) }}" class="btn btn-warning btn-sm"
                                                     style="margin-right: 5px"><i class="fa-solid fa-pen "></i></a>
                                             @endcan
+                                            <a href="{{ route('admin.tasks.show', $item) }}" class="btn btn-warning btn-sm"
+                                                style="margin-right: 5px"><i class="fa-solid fa-eye "></i></a>
                                             {{--  --}}
                                             <div class="btn-group dropdown">
                                                 <button type="button"
@@ -138,34 +148,33 @@
                                                 </div>
                                             </div>
                                             {{--  --}}
-                                            @can("delete task")
+                                            @can('delete task')
+                                                <form id="delete-form-{{ $item->id }}"
+                                                    action="{{ route('admin.tasks.destroy', $item) }}" method="POST"
+                                                    style="display: none;">
+                                                    @csrf
+                                                    @method('delete')
+                                                </form>
+                                                <button onclick="confirmDelete({{ $item->id }});"
+                                                    class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
 
-                                            <form id="delete-form-{{ $item->id }}" action="{{ route('admin.tasks.destroy', $item) }}" method="POST" style="display: none;">
-                                                @csrf
-                                                @method('delete')
-                                            </form>
-                                            <button
-                                                onclick="confirmDelete({{ $item->id }});"
-                                                class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-
-                                            <script>
-                                                function confirmDelete(itemId) {
-                                                    Swal.fire({
-                                                        title: "Are you sure?",
-                                                        text: "You won't be able to revert this!",
-                                                        icon: "warning",
-                                                        showCancelButton: true,
-                                                        confirmButtonColor: "#3085d6",
-                                                        cancelButtonColor: "#d33",
-                                                        confirmButtonText: "Yes, delete it!"
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
-                                                            document.getElementById('delete-form-' + itemId).submit();
-                                                        }
-                                                    });
-                                                }
-                                            </script>
-
+                                                <script>
+                                                    function confirmDelete(itemId) {
+                                                        Swal.fire({
+                                                            title: "Are you sure?",
+                                                            text: "You won't be able to revert this!",
+                                                            icon: "warning",
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: "#3085d6",
+                                                            cancelButtonColor: "#d33",
+                                                            confirmButtonText: "Yes, delete it!"
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById('delete-form-' + itemId).submit();
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
                                             @endcan
                                         </td>
                                     </tr>

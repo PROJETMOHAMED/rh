@@ -28,7 +28,7 @@ class AttendanceController extends Controller
         $schedule = Schedule::find(1);
         $this->validate($request, [
             "reason" => "required",
-            "time" => 'required|date_format:H:i:s|time_range:' . $schedule->from . ',' . $schedule->to
+            "time" => 'nullable|time_range:' . $schedule->from . ',' . $schedule->to
         ]);
         $Attendance = Attendance::create([
             "employee_id" => $employee->id,

@@ -31,7 +31,8 @@
                                     <option value=""></option>
                                     @foreach ($departements as $item)
                                         <option value="{{ $item->id }}"
-                                            {{ request()->departement_id == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                            {{ request()->departement_id == $item->id ? 'selected' : '' }}>
+                                            {{ $item->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -117,7 +118,31 @@
                                                                 data-x-placement="bottom-end">
                                                                 <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 2]) }}"
                                                                     class="dropdown-item">retard</a>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 3]) }}">absent
+                                                                    aprés midi</a>
                                                                 <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 0]) }}"
+                                                                    class="dropdown-item">preson</a>
+                                                            </div>
+                                                        </div>
+                                                    @elseif ($check_attd->status == 3)
+                                                        <div class="btn-group dropdown">
+                                                            <button type="button" class="badge bg-warning"
+                                                                style="border: none" id="dropdownMenuDate"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                <i
+                                                                    class="fa-solid fa-exclamation"title="{{ $item->reason }}"></i>
+                                                                <span class="sr-only">Toggle Dropdown</span>
+                                                            </button>
+                                                            <div class="dropdown-menu dropdown-menu-right"
+                                                                aria-labelledby="dropdownMenuDate"
+                                                                data-x-placement="bottom-end">
+                                                                <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 2]) }}"
+                                                                    class="dropdown-item">retard</a>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 1]) }}">absent</a>
+                                                                <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 0]) }}"
                                                                     class="dropdown-item">preson</a>
                                                             </div>
                                                         </div>
@@ -135,19 +160,15 @@
                                                                 aria-labelledby="dropdownMenuDate"
                                                                 data-x-placement="bottom-end">
                                                                 <a class="dropdown-item"
+                                                                    href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 3]) }}">absent
+                                                                    aprés midi</a>
+                                                                <a class="dropdown-item"
                                                                     href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 1]) }}">absent</a>
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 0]) }}">preson</a>
                                                             </div>
                                                         </div>
                                                     @endif
-                                                    {{-- @if ($check_attd->status == 1)
-                                                        <span class="badge bg-danger" title="{{ $check_attd->reason }}"><i
-                                                                class="fa-solid fa-x"></i></span>
-                                                    @else
-                                                        <span class="badge bg-info" title="{{ $check_attd->reason }}"><i
-                                                                class="fa-solid fa-minus"></i></span>
-                                                    @endif --}}
                                                 @else
                                                     <span class="badge bg-success" title="check"><i
                                                             class="fa-solid fa-check"></i></span>

@@ -129,7 +129,9 @@
                                                                 id="justification-form-{{ $item->id }}" method="POST">
                                                                 @csrf
                                                                 @method('PUT')
-                                                                <input type="file" name="file" class="file-input" data-item-id="{{ $item->id }}" accept="application/pdf">
+                                                                <input type="file" name="file" class="file-input"
+                                                                    data-item-id="{{ $item->id }}"
+                                                                    accept="application/pdf">
 
                                                             </form>
                                                             <script>
@@ -154,8 +156,6 @@
                                                     </td>
                                                     <td>
                                                         @if ($item->status == 1)
-                                                            {{-- <span class="badge bg-danger" title="absence"><i
-                                                                    class="fa-solid fa-x"></i></span> --}}
                                                             <div class="btn-group dropdown">
                                                                 <button type="button" class="badge bg-danger"
                                                                     style="border: none" id="dropdownMenuDate"
@@ -169,13 +169,35 @@
                                                                     data-x-placement="bottom-end">
                                                                     <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 2]) }}"
                                                                         class="dropdown-item">retard</a>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 3]) }}">absent
+                                                                        aprés midi</a>
+                                                                    <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 0]) }}"
+                                                                        class="dropdown-item">preson</a>
+                                                                </div>
+                                                            </div>
+                                                        @elseif ($item->status == 3)
+                                                            <div class="btn-group dropdown">
+                                                                <button type="button" class="badge bg-warning"
+                                                                    style="border: none" id="dropdownMenuDate"
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                    <i
+                                                                        class="fa-solid fa-exclamation"title="{{ $item->reason }}"></i>
+                                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                                </button>
+                                                                <div class="dropdown-menu dropdown-menu-right"
+                                                                    aria-labelledby="dropdownMenuDate"
+                                                                    data-x-placement="bottom-end">
+                                                                    <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 2]) }}"
+                                                                        class="dropdown-item">retard</a>
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 1]) }}">absent</a>
                                                                     <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 0]) }}"
                                                                         class="dropdown-item">preson</a>
                                                                 </div>
                                                             </div>
                                                         @else
-                                                            {{-- <span class="badge bg-warning" title="retard"><i
-                                                                    class="fa-solid fa-minus"></i></span> --}}
                                                             <div class="btn-group dropdown">
                                                                 <button type="button" class="badge bg-info"
                                                                     style="border: none" id="dropdownMenuDate"
@@ -188,6 +210,9 @@
                                                                 <div class="dropdown-menu dropdown-menu-right"
                                                                     aria-labelledby="dropdownMenuDate"
                                                                     data-x-placement="bottom-end">
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 3]) }}">absent
+                                                                        aprés midi</a>
                                                                     <a class="dropdown-item"
                                                                         href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 1]) }}">absent</a>
                                                                     <a class="dropdown-item"
@@ -221,28 +246,17 @@
                                     <select id="status" class="form-control SlectBox SumoUnder" name="status">
                                         <option value="1">Absence</option>
                                         <option value="2">retard</option>
+                                        <option value="3">Absent Apres Midi</option>
                                     </select>
                                 </div>
-                                <div class="form-group" id="timeDiv" style="display: none;">
+                                <div class="form-group" id="timeDiv">
                                     <label for="Username">Time :</label>
                                     <?php
                                     $current_time = date('H:i:s');
                                     $new_time = date('H:i:s', strtotime($current_time . ' +1 hour'));
                                     ?>
-                                    <input type="time" name="time" value="{{ $new_time }}" id="Username"
-                                        class="form-control">
+                                    <input type="time" name="time" id="Username" class="form-control">
                                 </div>
-
-                                <script>
-                                    document.getElementById('status').addEventListener('change', function() {
-                                        var timeDiv = document.getElementById('timeDiv');
-                                        if (this.value == 1) {
-                                            timeDiv.style.display = 'none';
-                                        } else {
-                                            timeDiv.style.display = 'block';
-                                        }
-                                    });
-                                </script>
                                 <div class="form-group">
                                     <label for="Username">Reason :<span class="tx-danger">*</span></label>
                                     <input type="text" name="reason" id="Username" class="form-control">

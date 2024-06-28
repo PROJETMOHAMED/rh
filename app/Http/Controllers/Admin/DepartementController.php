@@ -62,7 +62,7 @@ class DepartementController extends Controller
             'name' => "required|unique:departements,name,except" . $departement->id,
         ]);
         $departement->update($request->all());
-        return redirect()->route("admin.departement.index")->with("success", "departement edited with success");
+        return redirect()->back()->with("success", "departement edited with success");
     }
 
     /**

@@ -81,7 +81,7 @@
                         <div class="col-12">
                             <div class="form-group mg-b-0">
                                 <label class="form-label">Link: <span class="tx-danger">*</span></label>
-                                <input class="form-control" name="link" placeholder="Enter link" required=""
+                                <input class="form-control" name="link" placeholder="Enter link" 
                                     value="{{ $task->link }}" type="text" />
                                 @error('link')
                                     <div class="alert alert-danger">{{ $message }}</div>

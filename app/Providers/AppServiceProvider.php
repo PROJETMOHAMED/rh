@@ -54,5 +54,9 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('time_range', function ($attribute, $value, $parameters, $validator) {
             return strtotime($value) >= strtotime($parameters[0]) && strtotime($value) <= strtotime($parameters[1]);
         });
+
+        \Blade::directive('limitHtml', function ($expression) {
+            return "<?php echo \Illuminate\Support\Str::limit(strip_tags($expression), 20, '...'); ?>";
+        });
     }
 }

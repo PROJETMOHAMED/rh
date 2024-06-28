@@ -42,7 +42,6 @@ class TaskController extends Controller
             'name' => "required|max:200",
             'date_debut' => "required|date",
             'date_fin' => "required|after_or_equal:date_debut",
-            'link' => "required",
         ]);
         Task::create($request->all());
         return redirect()->route('admin.tasks.index')->with(['success' => 'task create with success']);
@@ -53,7 +52,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return view('admin.content.tasks.show', compact('task'));
     }
 
     /**
@@ -74,7 +73,6 @@ class TaskController extends Controller
             'name' => "required|max:200",
             'date_debut' => "required|date",
             'date_fin' => "required|after_or_equal:date_debut",
-            'link' => "required",
         ]);
         $task->update($request->all());
         return redirect()->route("admin.tasks.index")->with([
