@@ -111,6 +111,12 @@
                     <span style="margin-left: 14px;font-weight: bold;color: black"
                         class="side-menu__label">Schedules</span></a>
             </li>
+            <li class="slide">
+                <a class="side-menu__item" href="{{ route('admin.types.index') }}">
+                    <i class="fa-solid fa-file-signature" style="color: #000000;"></i>
+                    <span style="margin-left: 14px;font-weight: bold;color: black"
+                        class="side-menu__label">Type de contrat</span></a>
+            </li>
             @can('view note')
                 <li class="slide">
                     <a class="side-menu__item" href="{{ route('admin.notes.index') }}"><i class="fa-solid fa-book"

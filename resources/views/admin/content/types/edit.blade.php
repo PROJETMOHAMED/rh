@@ -7,9 +7,9 @@
         <div class="card">
             <div class="card-body">
                 <div class="main-content-label mg-b-5">
-                    Edit Departement
+                    Edit Type de Contract
                 </div>
-                <form action="{{ route('admin.departement.update', $type) }}" method="POST">
+                <form action="{{ route('admin.types.update', $type) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row row-sm">
@@ -32,7 +32,7 @@
                                         @forelse ($types as $item)
                                             <option value="{{ $item->id }}" @selected($item->id == $type->parent_id) >{{ $item->name }}</option>
                                         @empty
-                                            
+
                                         @endforelse
                                     </select>
                                 </div>

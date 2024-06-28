@@ -16,10 +16,10 @@
                         <div class="col-6">
                             <div class="form-group mg-b-0">
                                 <label class="form-label">name: <span class="tx-danger">*</span></label>
-                                <input class="form-control" name="name" placeholder="Enter department name"
-                                required="" type="text" />
+                                <input class="form-control" name="name" placeholder="Enter contat type name"
+                                    required="" type="text" />
                                 @error('name')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                         response.forEach(function(item) {
                             subTypes +=
                                 `
-                                <option value="${item.id}">${item.name} 
+                                <option value="${item.id}">${item.name}
                                 </option>;
                                 `
                         });

@@ -44,22 +44,25 @@
                                         <td>{{ $item->name }}</td>
                                         <td>
                                             @forelse ($item->children as $child)
-                                                <span class="tag tag-rounded tag-lime">{{ $child->name }}</span>
+                                                <a href="{{ route('admin.types.edit' , $child) }}"
+                                                    class="tag tag-rounded tag-lime">{{ $child->name }}</a>
                                             @empty
                                                 No Child Found
                                             @endforelse
                                         </td>
                                         <td class="d-flex">
-                                            <a href="{{ route('admin.types.edit', $item) }}"
-                                                class="btn btn-warning btn-sm" style="margin-right: 5px"><i class="fa-solid fa-pen"></i></a>
-                                            <form action="{{ route('admin.types.destroy', $item) }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button
-                                                    onclick="return confirm('Are you sure you want to delete this item?');"
-                                                    class="btn btn-danger btn-sm"><i
-                                                        class="fa-solid fa-trash"></i></button>
-                                            </form>
+                                            <a href="{{ route('admin.types.edit', $item) }}" class="btn btn-warning btn-sm"
+                                                style="margin-right: 5px"><i class="fa-solid fa-pen"></i></a>
+                                            {{-- @if ($item->Employees->count() == 0)
+                                                <form action="{{ route('admin.types.destroy', $item) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button
+                                                        onclick="return confirm('Are you sure you want to delete this item?');"
+                                                        class="btn btn-danger btn-sm"><i
+                                                            class="fa-solid fa-trash"></i></button>
+                                                </form>
+                                            @endif --}}
                                         </td>
                                     </tr>
                                 @endforeach

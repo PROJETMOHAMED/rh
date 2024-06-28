@@ -26,7 +26,7 @@ class TypeController extends Controller
         // dd($types->count("id"));
         return view("admin.content.types.create",compact('types'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -48,7 +48,7 @@ class TypeController extends Controller
     {
         //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      */
