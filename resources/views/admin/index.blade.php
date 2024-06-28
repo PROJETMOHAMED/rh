@@ -138,7 +138,7 @@
                     <table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
                         <thead>
                             <tr>
-                                <th class="wd-lg-25p">Nmae</th>
+                                <th class="wd-lg-25p">Name</th>
                                 <th class="wd-lg-25p tx-right">Phone</th>
                                 <th class="wd-lg-25p tx-right">H Date</th>
                                 <th class="wd-lg-25p tx-right">Type</th>
@@ -150,9 +150,10 @@
                                     <td>{{ $item->full_name }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item->phone }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item->date_debut }}</td>
-                                    <td class="tx-right tx-medium tx-inverse">{{ $item->ContratType->name? $item->ContratType->name : '' }}</td>
+                                    <td class="tx-right tx-medium tx-inverse">
+                                        {{ $item->ContratType->name ? $item->ContratType->name : '' }}</td>
                                 </tr>
-                                @empty
+                            @empty
                                 <p>no data found</p>
                             @endforelse
                         </tbody>
@@ -179,11 +180,12 @@
                         </thead>
                         <tbody>
                             @forelse ($listOfData['employeesList'] as $item)
-                            <tr>
-                                <td>{{ $item->full_name }}</td>
-                                <td class="tx-right tx-medium tx-inverse">{{ $item->phone }}</td>
-                                <td class="tx-right tx-medium tx-inverse">{{ $item->date_debut }}</td>
-                                <td class="tx-right tx-medium tx-inverse">{{ $item->ContratType->name? $item->ContratType->name : '' }}</td>
+                                <tr>
+                                    <td>{{ $item->full_name }}</td>
+                                    <td class="tx-right tx-medium tx-inverse">{{ $item->phone }}</td>
+                                    <td class="tx-right tx-medium tx-inverse">{{ $item->date_debut }}</td>
+                                    <td class="tx-right tx-medium tx-inverse">
+                                        {{ $item->ContratType->name ? $item->ContratType->name : '' }}</td>
                                 </tr>
                             @empty
                                 <p>no data found</p>
@@ -209,20 +211,24 @@
                         @forelse ($listOfData['recentEmployees'] as $item)
                             <div class="list-group-item list-group-item-action" href="#">
                                 <div class="media mt-0">
-                                    <img class="avatar-lg rounded-circle mr-3 my-auto" src="assets/img/faces/3.jpg"
+                                    <img class="avatar-lg rounded-circle mr-3 my-auto"
+                                        @if ($item->sexe != 'homme') src="https://cricclubs.com/documentsRep/profilePics/default-female-Image.jpg"
+                                    @else
+                                    src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQN6DYPQY4MejnXbsptT3GFyfhoWkIeHgV1iEJeYMa8lhj_opZE" @endif
                                         alt="Image description">
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
                                             <div class="mt-0">
                                                 <h5 class="mb-1 tx-15">{{ $item->full_name }}</h5>
-                                                <p class="mb-0 tx-13 text-success">{{ optional($item->ContratType)->name }}</p>
+                                                <p class="mb-0 tx-13 text-success">{{ optional($item->ContratType)->name }}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         @empty
-                        {{--  --}}
+                            {{--  --}}
                         @endforelse
                     </div>
                 </div>
@@ -274,7 +280,8 @@
                                         <div class="d-flex align-items-center">
                                             <div class="mt-0">
                                                 <h5 class="mb-1 tx-15">{{ $item->date }}</h5>
-                                                <p class="mb-0 tx-13 text-success">{{ Str::limit($item->description, 25, '...') }}</p>
+                                                <p class="mb-0 tx-13 text-success">
+                                                    {{ Str::limit($item->description, 25, '...') }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -310,7 +317,8 @@
                                 <tr>
                                     <td>{{ $item['employee']->firstname }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item['employee']->phone }}</td>
-                                    <td class="tx-right tx-medium tx-inverse">{{ $item['employee']->departement->name }}</td>
+                                    <td class="tx-right tx-medium tx-inverse">{{ $item['employee']->departement->name }}
+                                    </td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item['late_count'] }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item['absence_count'] }}</td>
                                     <td class="">
