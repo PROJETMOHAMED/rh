@@ -1,6 +1,6 @@
 <!-- main-sidebar -->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-<aside class="app-sidebar sidebar-scroll" >
+<aside class="app-sidebar sidebar-scroll">
     <div class="main-sidebar-header active">
         <a class="desktop-logo logo-light active" href="#"><img src="{{ asset('assets/img/brand/logo.png') }} "
                 class="main-logo" alt="logo"></a>
@@ -45,7 +45,8 @@
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="#"><i class="fa-solid fa-building"
                         style="color: #000000;"></i><span class="side-menu__label"
-                        style="margin-left: 14px;font-weight: bold;color:black">Département</span><i class="angle fe fe-chevron-down"></i></a>
+                        style="margin-left: 14px;font-weight: bold;color:black">Département</span><i
+                        class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     @foreach ($departementlist as $item)
                         @if (Auth::user()->departements->contains('id', $item->id))
@@ -60,7 +61,8 @@
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="#"><i class="fa-solid fa-users"
                             style="color: #000000;"></i><span class="side-menu__label"
-                            style="margin-left: 14px;font-weight: bold;color: black">Employés</span><i class="angle fe fe-chevron-down"></i></a>
+                            style="margin-left: 14px;font-weight: bold;color: black">Employés</span><i
+                            class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
                         <li><a class="slide-item" href="{{ route('admin.employees.index', ['status' => 3]) }}">en Cours</a>
                         </li>
@@ -75,52 +77,55 @@
                 <li class="slide">
                     <a class="side-menu__item" data-toggle="slide" href="#"><i class="fa-solid fa-user-check"
                             style="color: #000000;"></i><span class="side-menu__label"
-                            style="margin-left: 14px;font-weight: bold;color: black">Présence</span><i class="angle fe fe-chevron-down"></i></a>
+                            style="margin-left: 14px;font-weight: bold;color: black">Présence</span><i
+                            class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
                         <li><a class="slide-item" href="{{ route('admin.att.ViewAttendance') }}">View Attendance</a></li>
                         <li><a class="slide-item" href="{{ route('admin.att.RetardAbence', ['status' => 2]) }}">Attendance
                                 Retard</a></li>
                         <li><a class="slide-item" href="{{ route('admin.att.RetardAbence', ['status' => 1]) }}">Attendance
                                 Absence</a></li>
+                        <li><a class="slide-item" href="{{ route('admin.att.RetardAbence', ['status' => 3]) }}">Absence
+                                Demi Jour</a></li>
                     </ul>
                 </li>
             @endcan
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="#"><i class="fa-solid fa-user-tie"
                         style="color: #000000;"></i><span class="side-menu__label"
-                        style="margin-left: 14px;font-weight: bold;color: black">Personnel</span><i class="angle fe fe-chevron-down"></i></a>
+                        style="margin-left: 14px;font-weight: bold;color: black">Personnel</span><i
+                        class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item"
                             href="{{ route('admin.employees.index', ['type' => 'stage']) }}">Stagiaire</a></li>
                     <li><a class="slide-item"
                             href="{{ route('admin.employees.index', ['type' => 'Employment Contract']) }}">Employee</a>
                     </li>
-                    <li><a class="slide-item"
-                            href="{{ route('admin.employees.index') }}">Listing du personnel</a>
+                    <li><a class="slide-item" href="{{ route('admin.employees.index') }}">Listing du personnel</a>
                     </li>
                 </ul>
             </li>
             <li class="slide">
                 <a class="side-menu__item" href="{{ route('admin.WorkTime') }}">
-                        <i class="fa-solid fa-business-time" style="color: #000000;"></i>
-                        <span style="margin-left: 14px;font-weight: bold;color: black"
+                    <i class="fa-solid fa-business-time" style="color: #000000;"></i>
+                    <span style="margin-left: 14px;font-weight: bold;color: black"
                         class="side-menu__label">Schedules</span></a>
             </li>
-            @can("view note")
+            @can('view note')
                 <li class="slide">
                     <a class="side-menu__item" href="{{ route('admin.notes.index') }}"><i class="fa-solid fa-book"
                             style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold;color: black"
                             class="side-menu__label">Notes</span></a>
                 </li>
             @endcan
-            @can("view task")
+            @can('view task')
                 <li class="slide">
                     <a class="side-menu__item" href="{{ route('admin.tasks.index') }}"><i class="fa-solid fa-list-check"
                             style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold;color: black"
                             class="side-menu__label">tasks</span></a>
                 </li>
             @endcan
-            @can("view user")
+            @can('view user')
                 <li class="slide">
                     <a class="side-menu__item" href="{{ route('admin.users.index') }}"><i class="fa-solid fa-user-gear"
                             style="color: #000000;"></i><span style="margin-left: 14px;font-weight: bold;color: black"

@@ -119,6 +119,10 @@ class AttendanceController extends Controller
 
         $data = $query->paginate(10);
 
-        return view('admin.content.attendance.RetardAbsence', compact('data'));
+        $status = intval($request->status) === 1 ? 'Retard' : (intval($request->status) === 3 ? 'absence demi jour' : 'absense');
+
+
+
+        return view('admin.content.attendance.RetardAbsence', compact('data','status'));
     }
 }

@@ -104,7 +104,6 @@
                                             <td>
                                                 @if ($check_attd)
                                                     @if ($check_attd->status == 1)
-                                                        {{ $check_attd->status }}
                                                         <div class="btn-group dropdown">
                                                             <button type="button" class="badge bg-danger"
                                                                 style="border: none" id="dropdownMenuDate"
@@ -127,7 +126,6 @@
                                                             </div>
                                                         </div>
                                                     @elseif ($check_attd->status == 3)
-                                                        {{ $check_attd->status }}
                                                         <div class="btn-group dropdown">
                                                             <button type="button" class="badge bg-warning"
                                                                 style="border: none" id="dropdownMenuDate"
@@ -149,7 +147,6 @@
                                                             </div>
                                                         </div>
                                                         @else
-                                                        {{ $check_attd->status }}
                                                         <div class="btn-group dropdown">
                                                             <button type="button" class="badge bg-info"
                                                             style="border: none" id="dropdownMenuDate"
