@@ -104,6 +104,7 @@
                                             <td>
                                                 @if ($check_attd)
                                                     @if ($check_attd->status == 1)
+                                                        {{ $check_attd->status }}
                                                         <div class="btn-group dropdown">
                                                             <button type="button" class="badge bg-danger"
                                                                 style="border: none" id="dropdownMenuDate"
@@ -119,13 +120,14 @@
                                                                 <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 2]) }}"
                                                                     class="dropdown-item">retard</a>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 3]) }}">absent
+                                                                    href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 3]) }}">absent
                                                                     aprés midi</a>
                                                                 <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 0]) }}"
                                                                     class="dropdown-item">preson</a>
                                                             </div>
                                                         </div>
                                                     @elseif ($check_attd->status == 3)
+                                                        {{ $check_attd->status }}
                                                         <div class="btn-group dropdown">
                                                             <button type="button" class="badge bg-warning"
                                                                 style="border: none" id="dropdownMenuDate"
@@ -138,19 +140,20 @@
                                                             <div class="dropdown-menu dropdown-menu-right"
                                                                 aria-labelledby="dropdownMenuDate"
                                                                 data-x-placement="bottom-end">
-                                                                <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 2]) }}"
+                                                                <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 2]) }}"
                                                                     class="dropdown-item">retard</a>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 1]) }}">absent</a>
-                                                                <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 0]) }}"
+                                                                    href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 1]) }}">absent</a>
+                                                                <a href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 0]) }}"
                                                                     class="dropdown-item">preson</a>
                                                             </div>
                                                         </div>
-                                                    @else
+                                                        @else
+                                                        {{ $check_attd->status }}
                                                         <div class="btn-group dropdown">
                                                             <button type="button" class="badge bg-info"
-                                                                style="border: none" id="dropdownMenuDate"
-                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                            style="border: none" id="dropdownMenuDate"
+                                                            data-toggle="dropdown" aria-haspopup="true"
                                                                 aria-expanded="false">
                                                                 <i title="{{ $check_attd->reason }}"
                                                                     class="fa-solid fa-minus"></i>
@@ -160,7 +163,7 @@
                                                                 aria-labelledby="dropdownMenuDate"
                                                                 data-x-placement="bottom-end">
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $item, 'status' => 3]) }}">absent
+                                                                    href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 3]) }}">absent
                                                                     aprés midi</a>
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('admin.switch.SwitchAttendanceStatus', ['attendance' => $check_attd, 'status' => 1]) }}">absent</a>
