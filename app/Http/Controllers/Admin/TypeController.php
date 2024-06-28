@@ -64,7 +64,7 @@ class TypeController extends Controller
     public function update(Request $request, Type $type)
     {
         $this->validate($request, [
-            'name' => 'required|unique:types,name,except' . $type->id,
+            'name' => 'required|unique:types,name,' . $type->id,
         ]);
         $type->update($request->all());
         return redirect()->route("admin.types.index")->with("success", "type edited with success");
