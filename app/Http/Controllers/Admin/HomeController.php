@@ -42,12 +42,12 @@ class HomeController extends Controller
         // Get Stagiare List Data
         $stageType = Type::where('name', 'stage')->whereNull('parent_id')->first();
         $typeIds = $stageType->children()->pluck('id')->push($stageType->id);
-        $stagiaires = Employee::whereIn('type_id', $typeIds)->where('status', 3)->with('ContratType')->get();
+        $stagiaires = Employee::whereIn('type_id', $typeIds)->where('status', 3)->with('ContratType')->orderBy('created_at', 'desc')->take(5)->get();
 
         //Get Employees List
         $stageType = Type::where('name', 'Employment Contract')->whereNull('parent_id')->first();
         $typeIds = $stageType->children()->pluck('id')->push($stageType->id);
-        $employees = Employee::whereIn('type_id', $typeIds)->with('ContratType')->get();
+        $employees = Employee::whereIn('type_id', $typeIds)->with('ContratType')->orderBy('created_at', 'desc')->take(5)->get();
 
         //employees with their late and absence
         $startOfMonth = Carbon::now()->startOfMonth();
