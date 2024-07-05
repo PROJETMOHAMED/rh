@@ -81,9 +81,9 @@
                                     <th>phone</th>
                                     <th>sexe</th>
                                     <th>Departemt</th>
-                                    <th>schedule</th>
                                     <th>Contract</th>
                                     <th>piece identite</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,20 +96,6 @@
                                         <td>{{ $item->date_debut }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ $item->sexe }}</td>
-                                        {{-- <td class="text-center">
-                                            @php
-                                                $status =
-                                                    $item->status == 1
-                                                        ? 'success'
-                                                        : ($item->status == 2
-                                                            ? 'danger'
-                                                            : 'warning');
-                                            @endphp
-
-                                            <span class="label text-{{ $status }} d-flex">
-                                                <div class="dot-label bg-{{ $status }} mr-1"></div>
-                                            </span>
-                                        </td> --}}
                                         <td>{{ $item->Departement->name }}</td>
                                         <td>{{ $item->ContratType->name }}</td>
                                         <td>{{ $item->piece_identite }}</td>
