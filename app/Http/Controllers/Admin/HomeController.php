@@ -31,9 +31,13 @@ class HomeController extends Controller
         $stageType = Type::where('name', 'stage')->whereNull('parent_id')->first();
         $typeIds = $stageType->children()->pluck('id')->push($stageType->id);
         $StagiairesCount = Employee::whereIn('type_id', $typeIds)->where('status', 3)->count();
+        //
+        $employeeType = Type::where('name', 'Employment Contract')->whereNull('parent_id')->first();
+        $typeIds = $stageType->children()->pluck('id')->push($stageType->id);
+        $EmployeesCount = Employee::whereIn('type_id', $typeIds)->where('status', 3)->count();
         $counts = [
             'employeeCount' => Employee::where('status', 3)->count(),
-            'AllemployeesCount' => Employee::count(),
+            'AllemployeesCount' => $EmployeesCount,
             'stagiairesCount' => $StagiairesCount,
             'departmentCount' => Departement::count(),
             'abondoneCount' => Employee::where('status', 2)->count(),
