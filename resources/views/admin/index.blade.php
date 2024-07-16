@@ -14,21 +14,6 @@
     </div>
     <!-- /breadcrumb -->
 
-
-    {{-- <div class="container-fluid">
-        <div class="row row-sm">
-            <div class="col-lg-6 col-xl-3 col-md-6 col-12"></div>
-            <div class="col-lg-6 col-xl-3 col-md-6 col-12"></div>
-            <div class="col-lg-6 col-xl-3 col-md-6 col-12"></div>
-            <div class="col-lg-6 col-xl-3 col-md-6 col-12">
-                <div class="pr-1 mb-3 mb-xl-0">
-                    <a href="{{ route('admin.users.create') }}" title="Create New User" type="button" class="btn btn-info btn-sm">
-                        Cree un departement
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <div class="container-fluid">
         <div class="row row-sm">
             <div class="col-lg-6 col-xl-3 col-md-6 col-12">
@@ -48,7 +33,7 @@
                                             Employees
                                         </a>
                                     </span>
-                                    <h2 class="text-white mb-0">{{ $counts['employeeCount'] }}</h2>
+                                    <h2 class="text-white mb-0">{{ $counts['employeesCount'] }}</h2>
                                 </div>
                             </div>
                         </div>
