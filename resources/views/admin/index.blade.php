@@ -322,9 +322,10 @@
                                     <td class="tx-right tx-medium tx-inverse">{{ $item['late_count'] }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $item['absence_count'] }}</td>
                                     <td class="">
-                                        <button class="btn btn-success btn-sm">
+                                        <a href="{{ route('admin.employees.show', $item['employee']->id) }}"
+                                            class="btn btn-success btn-sm">
                                             <i class="fa-solid fa-eye"></i>
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @empty
